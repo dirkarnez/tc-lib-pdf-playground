@@ -89,8 +89,24 @@ $txt = $pdf->getTextLine(
 
 $pdf->page->addContent($txt);
 
+$style7 = [
+    'lineWidth' => 0.5,
+    'lineCap' => 'butt',
+    'lineJoin' => 'miter',
+    'dashArray' => [],
+    'dashPhase' => 0,
+    'lineColor' => 'darkorange',
+    'fillColor' => 'palegreen',
+];
+
+$pdf->graph->setPageWidth($page01['width']);
+$pdf->graph->setPageHeight($page01['height']);
+
 $circle1 = $pdf->graph->getCircle(25, 105, 20);
 $pdf->page->addContent($circle1);
+
+$circle2 = $pdf->graph->getCircle(25, 105, 10, 90, 180, '', $style7);
+$pdf->page->addContent($circle2);
 
 $rawpdf = $pdf->getOutPDFString();
 $pdf->renderPDF($rawpdf);
